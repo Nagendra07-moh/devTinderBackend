@@ -1,10 +1,18 @@
 const express = require('express')
-require('./config/database')
+const connectDB = require('./config/database')
 const app = express();
-
 
 const PORT  = 2001
 
-app.listen(PORT,()=>{
+connectDB()
+.then(()=>{
+	console.log("DB is live!!");
+
+	app.listen(PORT,()=>{
 	console.log("Your server is running!!");
+    })
 })
+.catch((err) =>{
+	console.log("error->",err);
+})
+
