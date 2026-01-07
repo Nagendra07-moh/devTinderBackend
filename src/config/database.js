@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const connectDB = async () =>{
 	if (!process.env.mongoUrl) {
-		throw new Error('mongoUrl environment variable is not defined. Please check your .env file.')
+		throw new Error(process.env.mongoUrl)
 	}
 	await mongoose.connect(process.env.mongoUrl)
 }
