@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const connectDB = async () =>{
-	await mongoose.connect('mongodb+srv://nagendra:nagendra@cluster0.6ldq1js.mongodb.net/devTinder ')
+	if (!process.env.mongoUrl) {
+		throw new Error('mongoUrl environment variable is not defined. Please check your .env file.')
+	}
+	await mongoose.connect(process.env.mongoUrl)
 }
 
 module.exports = connectDB

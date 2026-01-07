@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const connectDB = require('./config/database')
 const app = express();
@@ -8,7 +9,7 @@ connectDB()
 .then(()=>{
 	console.log("DB is live!!");
 
-	app.listen(PORT,()=>{
+	app.listen(process.env.PORT,()=>{
 	console.log("Your server is running!!");
     })
 })
